@@ -6,11 +6,14 @@ import {
   MoonIcon,
   SwatchIcon,
 } from "@heroicons/react/24/outline";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const ThemeShift = () => {
-  const [theme, setTheme] = useState("light");
+  const [hue, setHue] = useLocalStorage("todo.color", "240");
+
+  const dark = window.matchMedia('(prefered-color: dark)').matches
+  const [theme, setTheme] = useLocalStorage("todo.theme", dark ? 'dark' : 'light');
   const [color, setColor] = useState(false);
-  const [hue, setHue] = useState("240");
 
   useEffect(() => {
     document.documentElement.setAttribute("color-scheme", theme);
