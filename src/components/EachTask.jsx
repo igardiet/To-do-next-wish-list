@@ -5,7 +5,7 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 
-const EachTask = ({ task, editTask , deleteTask }) => {
+const EachTask = ({ task, editMode, editTask , deleteTask }) => {
   const [isChecked, setIsChecked] = useState(task.checked);
 
   const setCheckbox = (e) => {
@@ -32,7 +32,7 @@ const EachTask = ({ task, editTask , deleteTask }) => {
         </label>
       </div>
       <div className={EachTaskStyle["task-group"]}>
-        <button className="btn" aria-label={`Update ${task.name} Task`}>
+        <button className="btn" onClick={() => editMode(task)} aria-label={`Update ${task.name} Task`}>
             <PencilIcon width={20} height={20} />
         </button>
         <button className={`btn ${EachTaskStyle.delete}`} aria-label={`Delete ${task.name} Task`} onClick={() => deleteTask(task.id)}>
